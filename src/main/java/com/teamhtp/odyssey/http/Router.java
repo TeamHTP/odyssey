@@ -1,6 +1,7 @@
 package com.teamhtp.odyssey.http;
 
 import com.teamhtp.odyssey.logic.Attractions;
+import com.teamhtp.odyssey.logic.Route;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,9 @@ public class Router {
             path("/attractions", () -> {
                 get("/", Attractions.getAtLocation);
                 get("/details/", Attractions.getPlaceDetails);
+            });
+            path("/route", () -> {
+                get("/", Route.getRoute);
             });
         });
     }
