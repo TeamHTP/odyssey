@@ -10,7 +10,7 @@ public class Route {
     public static spark.Route getRoute = (q, a) -> {
         String origin = q.queryParams("origin");
         String waypoints = q.queryParams("waypoints");
-        HttpResponse<JsonNode> jsonResponse = Unirest.get("http://maps.googleapis.com/maps/api/directions/json")
+        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://maps.googleapis.com/maps/api/directions/json")
                 .header("accept", "application/json")
                 .queryString("key", Main.GOOGLE_MAPS_API_KEY)
                 .queryString("origin", origin)
