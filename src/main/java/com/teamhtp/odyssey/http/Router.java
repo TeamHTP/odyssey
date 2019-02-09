@@ -16,6 +16,7 @@ public class Router {
             before("/*", (q, a) -> log.info("Received api call"));
             path("/attractions", () -> {
                 get("/", Attractions.getAtLocation);
+                get("/details/", Attractions.getPlaceDetails);
             });
         });
     }

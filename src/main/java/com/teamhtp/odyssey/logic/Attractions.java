@@ -1,6 +1,5 @@
 package com.teamhtp.odyssey.logic;
 
-import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -21,6 +20,16 @@ public class Attractions {
                 .queryString("radius", rad)
                 .queryString("location", lat + "," + lng)
                 .queryString("keyword", "attractions")
+                .asJson();
+        return jsonResponse.getBody();
+    };
+
+    public static Route getPlaceDetails = (q, a) -> {
+        String placeId = q.queryParams("placeId");
+        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json")
+                .header("accept", "application/json")
+                .queryString("key", Main.GOOGLE_MAPS_API_KEY)
+                .queryString("placeid", placeId)
                 .asJson();
         return jsonResponse.getBody();
     };
