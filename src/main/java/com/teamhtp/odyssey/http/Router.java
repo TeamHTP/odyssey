@@ -9,6 +9,7 @@ import static spark.Spark.*;
 public class Router {
 
     public static void init() {
+        port(80);
         Router.CORS();
         Logger log = LoggerFactory.getLogger(Router.class);
         path("/api", () -> {
