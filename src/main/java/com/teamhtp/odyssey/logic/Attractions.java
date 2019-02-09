@@ -2,6 +2,7 @@ package com.teamhtp.odyssey.logic;
 
 import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.teamhtp.odyssey.Main;
 import com.teamhtp.odyssey.SessionAttribute;
@@ -14,14 +15,14 @@ public class Attractions {
         String lat = q.queryParams("lat");
         String lng = q.queryParams("lng");
         String sessionId = q.session().attribute(SessionAttribute.USER_SESSION_ID);
-        HttpResponse<String> jsonResponse = Unirest.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
+        HttpResponse<JsonNode> jsonResponse = Unirest.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
                 .header("accept", "application/json")
                 .queryString("key", Main.GOOGLE_MAPS_API_KEY)
                 .queryString("radius", rad)
                 .queryString("location", lat + "," + lng)
                 .queryString("keyword", "attractions")
-                .asString();
-        return new Gson().toJson(jsonResponse.getBody());
+                .asJson();
+        return jsonResponse.getBody();
     };
 
 }
